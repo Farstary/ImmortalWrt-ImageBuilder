@@ -216,7 +216,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-zerotier-zh-cn"
 # ============= 红米AX6000 (MT7986) 自定义需求 =============
 
 # OpenClash（24.10 → nftables 专用）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash dnsmasq_full_nftset bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash dnsmasq_full bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
 
 # ZeroTier（保留，注意 24.10 运行时兼容性）
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libminiupnpc libnatpmp libstdcpp"
