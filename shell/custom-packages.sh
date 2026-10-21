@@ -233,6 +233,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr"
 
 # SmartDNS —— 建议注释掉，避免与 OpenClash 的 DNS 控制冲突
 # CUSTOM_PACKAGES="$CUSTOM_PACKAGES smartdns luci-app-smartdns luci-i18n-smartdns-zh-cn"
+
 # ===== 轻量局域网管理：IP/MAC 绑定 + 网络唤醒 + 高级重启 =====
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-advanced-reboot luci-i18n-advanced-reboot-zh-cn luci-mod-admin-full"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-arpbind luci-i18n-arpbind-zh-cn ip-full"
