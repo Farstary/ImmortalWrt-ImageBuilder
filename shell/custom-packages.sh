@@ -188,7 +188,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mwan3-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-statistics-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-syncthing-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-sysuh3c-zh-cn"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-timewol-zh-cn"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-timewol-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-tinyproxy-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-tor-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-transmission-zh-cn"
@@ -216,10 +216,11 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-zerotier-zh-cn"
 # ============= 红米AX6000 (MT7986) 自定义需求 =============
 
 # OpenClash（24.10 → nftables 专用）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash dnsmasq-full bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash dnsmasq_full_nftset bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
 
 # ZeroTier（保留，注意 24.10 运行时兼容性）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libminiupnpc libnatpmp libstdcpp"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libminiupnpc libnatpmp libstdcpp"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libpthread libstdcpp libminiupnpc libnatpmp"
 
 # Syncdial + mwan3（保留）
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan shellsync luci-app-mwan3 mwan3 luci-compat libuci-lua luci-mod-admin-full luci-lib-nixio"
