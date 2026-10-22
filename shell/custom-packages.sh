@@ -245,6 +245,16 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier luci-i18n-zerotier-
 # Turbo ACC + Full Cone —— 不在此处用字符串添加，需在源码编译阶段执行 add_turboacc.sh 后 menuconfig 选中
 # 24.10.6 不应把历史 turboacc 源码补丁与 ImageBuilder 预编译 kmod 混用
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc kmod-nft-fullcone"
+
+# SyncDial、MWAN3 与 MACVLAN
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial luci-app-mwan3 kmod-macvlan"
+
+# MWAN3 的 iptables/nftables 兼容层
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES iptables-nft ip6tables-nft"
+
+# 中文界面
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mwan3-zh-cn"
+
 # 原生软件流量分载：先于多拨、代理、策略路由测试；不等于启用硬件加速
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-nft-offload"
 
