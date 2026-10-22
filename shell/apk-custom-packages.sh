@@ -88,14 +88,14 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan luci-app-mwan3 
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mwan3 luci-i18n-mwan3-zh-cn"
 
 # BBR（保留，25.12 建议显式带上 fq 调度器）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr kmod-sched-fq"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr kmod-sched"
 
 # Turbo ACC + Full Cone
 # 重要：ImmortalWrt 23.05+ 因 nftables 替换 iptables，原版 luci-app-turboacc 已不可用。
 # 25.12 ImageBuilder 中不应把历史 turboacc 源码补丁与预编译 kmod 混用。
 # MTK 平台若有 luci-app-turboacc-mtk，需确认目标 profile 与闭源驱动匹配后再手动打开，本清单默认不启用。
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc kmod-nft-fullcone"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc-mtk"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc-mtk"
 
 
 # 原生软件流量分载：先于多拨、代理、策略路由测试；不等于启用硬件加速
