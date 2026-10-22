@@ -11,11 +11,9 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-quickstart-zh-cn"
 # 极光主题和配置
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-i18n-aurora-config-zh-cn"
 
-# 进阶设置（排除 argon-config 避免冲突）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES -luci-app-argon-config -luci-i18n-argon-config-zh-cn luci-app-advancedplus luci-i18n-advancedplus-zh-cn"
-
 # ============= 代理相关 =============
 # OpenClash（25.12 使用 apk 包，包名仍为 luci-app-openclash，但需确保源中有 .apk 格式）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES ruby-psych ruby-pstore kmod-nft-socket"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash -dnsmasq dnsmasq-full bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
 
 # ============= AdGuard Home 去广告 / DNS 过滤 =============
