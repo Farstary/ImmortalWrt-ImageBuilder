@@ -1,4 +1,8 @@
 #!/bin/bash
+# 审核版（ImmortalWrt 24.10.x ImageBuilder CUSTOM_PACKAGES 清单）
+# 注意：本文件仅拼接包名，不安装软件、修改内核或执行源码补丁。
+# 适用性以目标 ImageBuilder 本地 Packages 索引和内核 ABI 为准。
+CUSTOM_PACKAGES="${CUSTOM_PACKAGES:-}"
 # ============= imm仓库外的第三方插件==============
 # ============= 若启用 则打开注释 ================
 # ============= 但此文件也可以处理仓库内的软件去留 本质上是做了一个PACKAGES字符串的拼接 ================
@@ -40,7 +44,8 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-proto-wireguard"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-tailscale-community luci-i18n-tailscale-community-zh-cn"
 # 分区扩容 by sirpdboy 
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
+# U-Boot Mod 布局下扩容插件需先确认 MTD/UBI 分区结构，不在初始固件中启用
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
 # 看门狗watchdog by sirpdboy
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-watchdog luci-i18n-watchdog-zh-cn"
 # 酷猫主题 by sirpdboy 
@@ -48,7 +53,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
 # 进阶设置 by sirpdboy 
 # 当luci-app-advancedplus插件开启时 需排除冲突项 luci-app-argon-config和luci-i18n-argon-config-zh-cn 减号代表排除
 # 若要集成此插件请注意相关issue:https://github.com/wukongdaily/ImmortalWrt-ImageBuilder/issues/521
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES -luci-app-argon-config -luci-i18n-argon-config-zh-cn luci-app-advancedplus luci-i18n-advancedplus-zh-cn -luci-app-argon-config -luci-i18n-argon-config-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES -luci-app-argon-config -luci-i18n-argon-config-zh-cn luci-app-advancedplus luci-i18n-advancedplus-zh-cn"
 # MosDNS
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
 # Turbo ACC 网络加速
@@ -81,12 +86,12 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES -luci-app-argon-config -luci-i18n-argon-config
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-acme-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-adblock-fast-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-adblock-zh-cn"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-advanced-reboot-zh-cn"
+# 中文包在后面的主插件分组统一启用
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-airplay2-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-amule-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-appfilter-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-aria2-zh-cn"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-arpbind-zh-cn"
+# 中文包在后面的主插件分组统一启用
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-attendedsysupgrade-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-autoreboot-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-banip-zh-cn"
@@ -140,7 +145,8 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-arpbind-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mosquitto-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-msd_lite-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-music-remote-center-zh-cn"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mwan3-zh-cn"
+# MWAN3 中文包随主插件一起选择，不单独集成
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mwan3-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-n2n-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-natmap-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-netdata-zh-cn"
@@ -212,30 +218,46 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-mwan3-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xfrpc-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xinetd-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xlnetacc-zh-cn"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-zerotier-zh-cn"
+# ZeroTier 中文包在后面和主插件一起选择
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-zerotier-zh-cn"
 # ============= 红米AX6000 (MT7986) 自定义需求 =============
 
 # OpenClash（24.10 → nftables 专用）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash dnsmasq_full bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
+# 已弃用示例使用了错误的 dnsmasq_full 拼写；真正启用行在下方使用 dnsmasq-full。
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openclash -dnsmasq dnsmasq-full bash curl ca-bundle ip-full ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base"
 
 # ZeroTier（保留，注意 24.10 运行时兼容性）
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libminiupnpc libnatpmp libstdcpp"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier kmod-tun libpthread libstdcpp libminiupnpc libnatpmp"
+# zerotier 的 libpthread/libstdcpp6/libminiupnpc/libnatpmp1/libatomic1 等库由软件包 Depends 自动解析
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier luci-i18n-zerotier-zh-cn"
 
 # Syncdial + mwan3（保留）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan shellsync luci-app-mwan3 mwan3 luci-compat libuci-lua luci-mod-admin-full luci-lib-nixio"
+# 风险：24.10.6 Filogic 官方 kmods 目录未找到独立 kmod-macvlan，切勿默认打开此行
+# 仅在同一目标、同一内核 ABI 下确认 kmod-macvlan 与 SyncDial 所有依赖可解析后启用
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan luci-app-mwan3 luci-i18n-mwan3-zh-cn"
+# 如果只准备先验证 MWAN3 包解析，可选下面的单独测试项（非必需）
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mwan3 luci-i18n-mwan3-zh-cn"
 
 # BBR（保留）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr"
+# BBR 不会直接提升被路由的客户端普通 NAT TCP 会话吞吐量，按需单独启用
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr"
 
 # Turbo ACC + Full Cone —— 不在此处用字符串添加，需在源码编译阶段执行 add_turboacc.sh 后 menuconfig 选中
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc kmod-nft-fullcone"
+# 24.10.6 不应把历史 turboacc 源码补丁与 ImageBuilder 预编译 kmod 混用
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-turboacc kmod-nft-fullcone"
+# 原生软件流量分载：先于多拨、代理、策略路由测试；不等于启用硬件加速
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-nft-offload"
 
 # SmartDNS —— 建议注释掉，避免与 OpenClash 的 DNS 控制冲突
 # CUSTOM_PACKAGES="$CUSTOM_PACKAGES smartdns luci-app-smartdns luci-i18n-smartdns-zh-cn"
 
 # ===== 轻量局域网管理：IP/MAC 绑定 + 网络唤醒 + 高级重启 =====
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-advanced-reboot luci-i18n-advanced-reboot-zh-cn luci-mod-admin-full"
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-arpbind luci-i18n-arpbind-zh-cn ip-full"
+# U-Boot Mod 下不要盲目使用高级重启的分区切换功能
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-advanced-reboot luci-i18n-advanced-reboot-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-arpbind luci-i18n-arpbind-zh-cn"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-wol luci-i18n-wol-zh-cn etherwake"
+
+# 诊断插件（可选）：不会增加物理带宽，但有助于定位低于 500Mbps 的问题
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nlbwmon luci-i18n-nlbwmon-zh-cn"
+# 如果后续对照证实为缓冲膨胀问题，可考虑 SQM，但不要和 HW Flow Offload 同时启用
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-sqm luci-i18n-sqm-zh-cn"
