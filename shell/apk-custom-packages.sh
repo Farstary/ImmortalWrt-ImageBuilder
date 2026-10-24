@@ -101,6 +101,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier luci-i18n-zerotier-
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-commands-zh-cn"
 
 # ============= 红米AX6000 (MT7986) 自定义需求（从 24.10.6 迁移） =============
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-bonding kmod-vrf proto-bonding ip-full"
 
 # OpenClash（24.10 → nftables 专用）
 #经考虑在直接在PC上运行收益比较高
