@@ -11,6 +11,8 @@
 #   targets/mediatek/filogic/packages/index.json   <-- 第 7 份：target 专属包，最容易漏查
 # 合计 11376 个包名（七份索引合并去重）。
 #
+#
+#
 # 【依赖闭包已核 2026-10】本文件启用的包，其 Makefile DEPENDS 全部可解析：
 #   iptables / ip6tables / ip / miniupnpd / nftables 是"虚拟包"（索引里搜不到这个名字），
 #   分别由 iptables-nft(1.8.10-r3) / ip6tables-nft(1.8.10-r3) / ip-tiny|ip-full /
@@ -45,11 +47,11 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-quickstart-zh-cn"
 # 非常好用的文件管理器 by github sbwml（第三方 feed，25.12.2 官方源没有）
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES quickfile luci-app-quickfile luci-i18n-quickfile-zh-cn"
 极光主题和配置 by github eamonxg（第三方 feed，25.12.2 官方源无 luci-theme-aurora，需自建 feed 才能用）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-i18n-aurora-config-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-i18n-aurora-config-zh-cn"
 # 分区扩容 by sirpdboy
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
 # 流量监控 by timsaya（第三方 feed，25.12.2 官方源没有 bandix）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES bandix luci-app-bandix luci-i18n-bandix-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES bandix luci-app-bandix luci-i18n-bandix-zh-cn"
 # 新增ssrp apk
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-nft-tproxy kmod-nft-socket xray-core naiveproxy luci-app-ssr-plus luci-i18n-ssr-plus-zh-cn"
 # 新增passwall apk（注意：25.12.2 官方源里是 luci-app-passwall，没有 luci-app-passwall2）
@@ -122,6 +124,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-bonding kmod-vrf proto-bonding ip-full"
 # 注意：syncdial 的 genwancfg 给每个 vwan 写死 mwan3.<if>.family=ipv4，
 #       IPv6 多拨必须按 docs/03 手工补 wan6 段（不是 mwan3 不支持 IPv6，是脚本没生成）。
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan luci-app-mwan3 luci-i18n-mwan3-zh-cn"
+
 # 如果只准备先验证 MWAN3 包解析，可选下面的单独测试项（非必需）
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mwan3 luci-i18n-mwan3-zh-cn"
 
@@ -168,7 +171,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nlbwmon luci-i18n-nlbwmon-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts kmod-sched-cake"
 
 # KMS 服务器（vlmcsd）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES vlmcsd luci-app-vlmcsd luci-i18n-vlmcsd-zh-cn luci-lua-runtime"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES vlmcsd luci-app-vlmcsd luci-i18n-vlmcsd-zh-cn luci-lua-runtime"
 
 # ============= AdGuard Home 去广告 / DNS 过滤 =============
 # 核心 + LuCI 界面（25.12.2 官方源：adguardhome 0.107.76-r1 / luci-app-adguardhome 26.236.50544~cb5d434）
