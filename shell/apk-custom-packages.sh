@@ -40,7 +40,7 @@
 # ---------------------------------------------------------------
 
 # 首页和网络向导(注意此插件依赖于istore商店 若集成它 则连同集成了istore商店)
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-quickstart-zh-cn"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-quickstart-zh-cn"
 # 新增Run安装器 用于快速安装makeself打包的run文件 目前和quickfile的nginx配置冲突 请勿同时集成quickfile
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-run"
 # 新增非常好用的文件管理器 by github sbwml
@@ -167,6 +167,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-arpbind luci-i18n-arpbind-zh-cn"
 
 # 诊断插件（可选）：不会增加物理带宽，但有助于定位低于 500Mbps 的问题
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nlbwmon luci-i18n-nlbwmon-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-fastnet fastnet luci-i18n-fastnet-zh-cn"
 # 如果后续对照证实为缓冲膨胀问题，可考虑 SQM，但不要和 HW Flow Offload 同时启用
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts kmod-sched-cake"
 
