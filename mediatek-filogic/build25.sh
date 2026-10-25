@@ -98,8 +98,6 @@ pppoe_account=${PPPOE_ACCOUNT}
 pppoe_password=${PPPOE_PASSWORD}
 EOF
 
-echo "cat pppoe-settings"
-cat /home/build/immortalwrt/files/etc/config/pppoe-settings
 
 # 输出调试信息
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Starting build process..."
@@ -152,6 +150,53 @@ if echo "$PACKAGES" | grep -q "luci-app-openclash"; then
 else
     echo "⚪️ 未选择 luci-app-openclash"
 fi
+
+
+# ============================================================
+# FastNet: ImageBuilder APK 兼容架构配置
+# 主架构: aarch64_cortex-a53
+# 附加架构: aarch64_generic
+# ============================================================
+
+if [[ " $PACKAGES " == *" fastnet "* ]]; then
+
+    echo "🔧 正在配置 FastNet APK 兼容架构..."
+
+    IB_MAKEFILE="/home/build/immortalwrt/Makefile"
+
+    # 确认当前 ImageBuilder Makefile 存在
+    if [ ! -f "$IB_MAKEFILE" ]; then
+        echo "❌ 找不到 ImageBuilder Makefile"
+        exit 1
+    fi
+
+    # 检查应修改的架构参数位置
+    ARCH_PATTERN='--arch $(ARCH_PACKAGES)'
+    MATCH_COUNT=$(grep -Fc -- "$ARCH_PATTERN" "$IB_MAKEFILE")
+
+    if [ "$MATCH_COUNT" -ne 2 ]; then
+        echo "❌ ImageBuilder 架构参数位置与预期不同: $MATCH_COUNT"
+        echo "请检查当前 ImageBuilder 版本"
+        exit 1
+    fi
+
+    # 追加 aarch64_generic 为兼容架构
+    # 保留原始 Cortex-A53 主架构
+    sed -i \
+        's/--arch $(ARCH_PACKAGES)/--arch $(ARCH_PACKAGES) --arch aarch64_generic/g' \
+        "$IB_MAKEFILE" || exit 1
+
+    echo "✅ APK 兼容架构配置完成"
+
+    grep -nF \
+        -- '--arch $(ARCH_PACKAGES) --arch aarch64_generic' \
+        "$IB_MAKEFILE" || exit 1
+
+else
+    echo "⚪️ 未选择 FastNet，保持默认架构配置"
+fi
+
+# ============================================================
 
 
 # 构建镜像
