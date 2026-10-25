@@ -20,6 +20,69 @@ else
 fi
 
 
+# ============================================================
+# FastNet 网络测速 - 独立 APK 集成
+# 无需 iStore 软件中心
+# ============================================================
+
+if [[ " $CUSTOM_PACKAGES " == *" fastnet "* ]]; then
+
+    echo "正在准备 FastNet APK..."
+
+    FASTNET_REPO="https://istore.istoreos.com/repo-apk"
+    FASTNET_DIR="/home/build/immortalwrt/packages"
+
+    mkdir -p "$FASTNET_DIR"
+
+    # 固定版本，避免上游更新导致不可重复构建
+    FASTNET_APKS=(
+        "aarch64_generic/nas/fastnet-0.7.7-r5.apk"
+        "aarch64_generic/nas/linkease-app-entry-3.0.23-r1.apk"
+        "all/nas_luci/luci-app-fastnet-0.7.7-r5.apk"
+        "all/nas_luci/luci-lib-linkeaseauth-1.2.1-r1.apk"
+        "all/nas_luci/luci-i18n-fastnet-zh-cn-26.295.30426~52b14de.apk"
+    )
+
+    for package in "${FASTNET_APKS[@]}"; do
+
+        filename="${package##*/}"
+        url="$FASTNET_REPO/$package"
+        target="$FASTNET_DIR/$filename"
+
+        echo "下载 FastNet 软件包: $filename"
+
+        # 失败立即终止，禁止缺包继续构建
+        if ! curl -fL \
+            --retry 3 \
+            --connect-timeout 15 \
+            --max-time 180 \
+            -o "$target" \
+            "$url"; then
+
+            echo "错误: FastNet 软件包下载失败: $filename"
+            exit 1
+        fi
+
+        # 检查文件存在且非空
+        if [ ! -s "$target" ]; then
+            echo "错误: FastNet APK 文件为空: $filename"
+            exit 1
+        fi
+
+    done
+
+    echo "FastNet APK 下载完成:"
+    ls -lh "$FASTNET_DIR"/*fastnet*.apk
+    ls -lh "$FASTNET_DIR"/*linkease*.apk
+
+else
+    echo "未选择 FastNet，跳过 APK 下载"
+fi
+
+# ============================================================
+# FastNet APK 集成结束
+# ============================================================
+
 
 # yml 传入的路由器型号 PROFILE
 echo "Building for profile: $PROFILE"
