@@ -167,7 +167,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-arpbind luci-i18n-arpbind-zh-cn"
 
 # 诊断插件（可选）：不会增加物理带宽，但有助于定位低于 500Mbps 的问题
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nlbwmon luci-i18n-nlbwmon-zh-cn"
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-fastnet fastnet luci-i18n-fastnet-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-fastnet fastnet luci-i18n-fastnet-zh-cn"
 # 如果后续对照证实为缓冲膨胀问题，可考虑 SQM，但不要和 HW Flow Offload 同时启用
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-sqm luci-i18n-sqm-zh-cn sqm-scripts kmod-sched-cake"
 
