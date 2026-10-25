@@ -39,18 +39,17 @@
 # 能查到版本号才允许写进本文件。
 # ---------------------------------------------------------------
 
-# 各位注意 如果你构建的固件是硬路由 此文件的注释要酌情考虑是否打开 因为硬路由的闪存空间有限 若构建出来过大或者构建失败 记得调整本文件的注释
-# 首页和网络向导（原脚本此包来自第三方 feed，25.12.2 官方源没有；硬开会导致编译直接失败）
+# 首页和网络向导(注意此插件依赖于istore商店 若集成它 则连同集成了istore商店)
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-quickstart-zh-cn"
 # 新增Run安装器 用于快速安装makeself打包的run文件 目前和quickfile的nginx配置冲突 请勿同时集成quickfile
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-run"
-# 非常好用的文件管理器 by github sbwml（第三方 feed，25.12.2 官方源没有）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES quickfile luci-app-quickfile luci-i18n-quickfile-zh-cn"
-极光主题和配置 by github eamonxg（第三方 feed，25.12.2 官方源无 luci-theme-aurora，需自建 feed 才能用）
+# 新增非常好用的文件管理器 by github sbwml
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES bash quickfile luci-app-quickfile luci-i18n-quickfile-zh-cn"
+# 极光主题和配置 by github eamonxg
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-i18n-aurora-config-zh-cn"
-# 分区扩容 by sirpdboy
+# 分区扩容 by sirpdboy 
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
-# 流量监控 by timsaya（第三方 feed，25.12.2 官方源没有 bandix）
+# 流量监控 by timsaya
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES bandix luci-app-bandix luci-i18n-bandix-zh-cn"
 # 新增ssrp apk
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-nft-tproxy kmod-nft-socket xray-core naiveproxy luci-app-ssr-plus luci-i18n-ssr-plus-zh-cn"
@@ -76,6 +75,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-rtp2httpd luci-i18n-rtp2httpd-zh-cn"
 #      => 装完必须替换成 v5 格式配置，否则服务起不来。完整配置见
 #      docs/02-DNS架构-MosDNS分流+ADG去广告.md
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES mosdns"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
 
 # 仓库内代理相关apk
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-nikki-zh-cn"
