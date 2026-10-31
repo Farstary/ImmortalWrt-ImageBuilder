@@ -36,11 +36,11 @@ if [[ " $CUSTOM_PACKAGES " == *" fastnet "* ]]; then
 
     # 固定版本，避免上游更新导致不可重复构建
     FASTNET_APKS=(
-        "aarch64_generic/nas/fastnet-0.7.7-r5.apk"
-        "aarch64_generic/nas/linkease-app-entry-3.0.23-r1.apk"
-        "all/nas_luci/luci-app-fastnet-0.7.7-r5.apk"
+        "aarch64_generic/nas/fastnet-0.7.8-r1.apk"              # 主程序已更新
+        "all/nas_luci/luci-app-fastnet-0.7.8-r5.apk"           # LuCI 界面已更新
+        "all/nas_luci/luci-i18n-fastnet-zh-cn-26.299.06522~751755a.apk"  # 中文包已更新
+        # "aarch64_generic/nas/linkease-app-entry-3.0.23-r1.apk"  # 建议核实或移除，仓库中可能已变更
         "all/nas_luci/luci-lib-linkeaseauth-1.2.1-r1.apk"
-        "all/nas_luci/luci-i18n-fastnet-zh-cn-26.295.30426~52b14de.apk"
     )
 
     for package in "${FASTNET_APKS[@]}"; do
