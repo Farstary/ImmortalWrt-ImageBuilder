@@ -75,7 +75,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-rtp2httpd luci-i18n-rtp2httpd-zh-cn"
 #      => 装完必须替换成 v5 格式配置，否则服务起不来。完整配置见
 #      docs/02-DNS架构-MosDNS分流+ADG去广告.md
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES mosdns"
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
 
 # 仓库内代理相关apk
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-nikki-zh-cn"
@@ -98,7 +98,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES zerotier luci-app-zerotier luci-i18n-zerotier-
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-nps-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xfrpc-zh-cn"
 # 网盘聚合
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-openlist-zh-cn"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-openlist-zh-cn"
 # 文件管理
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-filebrowser-go-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-filebrowser-zh-cn"
@@ -123,10 +123,7 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-bonding kmod-vrf proto-bonding ip-full"
 # luci-app-syncdial 2.0-r25 / luci-app-mwan3 26.236.50544~cb5d434 / kmod-macvlan 6.12.103-r1
 # 注意：syncdial 的 genwancfg 给每个 vwan 写死 mwan3.<if>.family=ipv4，
 #       IPv6 多拨必须按 docs/03 手工补 wan6 段（不是 mwan3 不支持 IPv6，是脚本没生成）。
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan luci-app-mwan3 luci-i18n-mwan3-zh-cn"
-
-# 如果只准备先验证 MWAN3 包解析，可选下面的单独测试项（非必需）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mwan3 luci-i18n-mwan3-zh-cn"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-syncdial kmod-macvlan luci-app-mwan3 luci-i18n-mwan3-zh-cn"
 
 # MWAN3 的兼容层（必须保留）
 # mwan3 2.12.0 的 lib/mwan3/common.sh 里是 IPT4="iptables -t mangle -w" / IPT6="ip6tables -t mangle -w"，
@@ -207,11 +204,11 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-attendedsysupgrade luci-i18n-attended
 # banip（基于 nftables 的 IP 黑名单，可订阅恶意 IP 表，注意 RAM）
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-banip banip"
 # pbr（策略路由，nft 版；比 mwan3 规则更适合"按域名/网段走指定 WAN"）
-#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-pbr"
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-pbr"
 # DDNS（IPv4+IPv6 双栈更新）
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-ddns luci-i18n-ddns-zh-cn"
 # 无线：多 AP 无缝漫游（dawn 与 usteer 二选一，别同时开）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-dawn luci-i18n-dawn-zh-cn"
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-dawn luci-i18n-dawn-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-usteer"
 # 无线：定时开关 Wi-Fi
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-wifischedule luci-i18n-wifischedule-zh-cn"
